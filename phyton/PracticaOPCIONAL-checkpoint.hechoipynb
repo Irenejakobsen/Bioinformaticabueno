@@ -1,0 +1,883 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "fa0a90bf-8da6-495c-b9f3-6de90ee73bac",
+   "metadata": {},
+   "source": [
+    "#### 1.- Dado el siguiente diccionario, convierte el valor de \"nombre\" en mayúsculas solo si \"activo\" es _True_. Reemplaza \"SQL\" por \"Perl\". Cambia \"activo\" a _False_ si Perl está en habilidades."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "b997feb2-c38b-4a26-92b8-a379b99b4736",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "data = {\n",
+    "    \"nombre\" : \"Teo\",\n",
+    "    \"edad\" : 27,\n",
+    "    \"habilidades\" : [\"Python\",\"SQL\", \"Java\"],\n",
+    "    \"activo\" : True\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "95ad615d-dded-4224-b308-7a024f8c9a4f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'nombre': 'TEO', 'edad': 27, 'habilidades': ['Python', 'Perl', 'Java'], 'activo': False}\n"
+     ]
+    }
+   ],
+   "source": [
+    "if data[\"activo\"]:\n",
+    "    data[\"nombre\"] = data[\"nombre\"].upper()\n",
+    "    \n",
+    "data[\"habilidades\"] = [\"Perl\" if h == \"SQL\" else h for h in data [\"habilidades\"]] \n",
+    "\n",
+    "if \"Perl\" in data [\"habilidades\"]:\n",
+    "    data[\"activo\"] = False\n",
+    "\n",
+    "print(data)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2727c0ef-1d89-4035-b7a5-47351a513515",
+   "metadata": {},
+   "source": [
+    "#### 2.- Dada la tupla _t_, convierte la tupla en un set. Calcula la suma de todos los elementos únicos y convierte el set de nuevo en tupla ordenada de mayor a menor."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "488d68ae-58e2-4b17-89ef-687082e06243",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "t = (4, 8, 15, 16, 23, 45, 6, 7, 9, 5, 111)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "270f7b13-b690-4b6f-9bbe-be6b533d0c93",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Set: {4, 5, 6, 7, 8, 9, 45, 15, 16, 111, 23}\n",
+      "Suma: 249\n",
+      "Tupla ordenada: (111, 45, 23, 16, 15, 9, 8, 7, 6, 5, 4)\n"
+     ]
+    }
+   ],
+   "source": [
+    "conjunto = set(t)\n",
+    "suma = sum(conjunto)\n",
+    "tupla_ordenada = tuple(sorted(conjunto, reverse=True))\n",
+    "print(\"Set:\", conjunto)\n",
+    "print (\"Suma:\", suma)\n",
+    "print (\"Tupla ordenada:\", tupla_ordenada)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "47a2eed8-82a0-4821-b18e-76de76aa6498",
+   "metadata": {},
+   "source": [
+    "#### 3.- Dada la cadena _texto_, crea un diccionario donde la clave sea cada letra y el valor sea la cantidad de veces que aparece. Convierte el diccionario en una lista de tuplas (letra, frecuencia) ordenada de mayor a menor frecuencia. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "368e149c-0c2e-4aac-ad9b-609b9bb7d9fb",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "texto = \"banana\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "c5377c44-869b-4f1f-b8c0-3a5e234b0733",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'b': 1, 'a': 3, 'n': 2}\n",
+      "[('a', 3), ('n', 2), ('b', 1)]\n"
+     ]
+    }
+   ],
+   "source": [
+    "frecuencias = {}\n",
+    "for letra in texto: \n",
+    "    if letra in frecuencias:\n",
+    "        frecuencias[letra] += 1\n",
+    "    else:\n",
+    "        frecuencias[letra] = 1\n",
+    "\n",
+    "lista = sorted(frecuencias.items(), key=lambda x: x[1], reverse=True)\n",
+    "\n",
+    "print(frecuencias)\n",
+    "print(lista)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e8221653-7bf1-480b-b57e-9508ee915251",
+   "metadata": {},
+   "source": [
+    "#### 4.- Dada la lista de tuplas _pares_. Filtra solo las tuplas donde el primer número es mayor que el segundo. Devuelve a una lista con True o False indicando si la suma de cada tupla es par."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "178d1c25-8c22-46d5-adc6-69ff6d0abe4e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "pares = [(1,5),(2,2),(10,3),(4,4)]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "00769534-4573-4131-b276-66efdc682044",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Tuplas filtradas [(10, 3)]\n",
+      "Resultado: [False]\n"
+     ]
+    }
+   ],
+   "source": [
+    "filtradas = [par for par in pares if par[0] > par[1]]\n",
+    "resultado = [(par[0] + par[1]) % 2 == 0 for par in filtradas]\n",
+    "print(\"Tuplas filtradas\", filtradas)\n",
+    "print(\"Resultado:\", resultado)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "aae3989f-9f30-41d2-b23b-6454e4bd8a1f",
+   "metadata": {},
+   "source": [
+    "#### 5.- Tienes el diccionario _usuarios_. Convierte todos los nombres a capitalizados (Ana, Luis, Marta). Agrega el rol \"vip\" a los usuarios que ya tengan más de 1 rol. Obtén un set con todos los roles únicos del sistema."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "cf9b1428-35b3-4dff-a6c4-8bef89515137",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "usuarios = {\n",
+    "    \"u1\" : {\"nombre\":\"ana\",\"roles\":{\"admin\",\"user\"}},\n",
+    "    \"u2\" : {\"nombre\":\"luis\",\"roles\":{\"user\"}},\n",
+    "    \"u3\" : {\"nombre\":\"marta\",\"roles\":{\"user\",\"moderator\"}}\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "a39446a0-c6e5-4504-b344-a75582a160e2",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'u1': {'nombre': 'Ana', 'roles': {'user', 'vip', 'admin'}}, 'u2': {'nombre': 'Luis', 'roles': {'user'}}, 'u3': {'nombre': 'Marta', 'roles': {'vip', 'moderator', 'user'}}}\n",
+      "{'vip', 'moderator', 'user', 'admin'}\n"
+     ]
+    }
+   ],
+   "source": [
+    "for usuario in usuarios.values():\n",
+    "    usuario[\"nombre\"] = usuario[\"nombre\"].capitalize()\n",
+    "\n",
+    "for usuario in usuarios.values():\n",
+    "    if len(usuario[\"roles\"]) > 1:\n",
+    "        usuario[\"roles\"].add(\"vip\")\n",
+    "\n",
+    "roles_unicos = set()\n",
+    "\n",
+    "for usuario in usuarios.values():\n",
+    "    roles_unicos.update(usuario[\"roles\"])\n",
+    "\n",
+    "print(usuarios)\n",
+    "print(roles_unicos)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6e492870-4433-4fb0-b6eb-0248255b846b",
+   "metadata": {},
+   "source": [
+    "#### 6.- Dado el string _frase_, obtén un set con todas las palabras únicas. Crea un diccionario que cuente cuántas veces aparece cada palabra. Devuelve el diccionario pero solo con las palabras que aparezcan más de 1 vez."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "f324921d-89bd-4eef-9da4-de9ec495e85b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "frase = \"En el camino, uno se da cuenta de que en un coche, uno siempre está en un compartimento, y, porque está acostumbrado, no se da cuenta de que, a través de esa ventana, todo lo que ve es simplemente más televisión\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "id": "33e01f4a-c799-41fe-abfc-713ad460968f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Palabras unicas:\n",
+      "{'de', 'camino', 'compartimento', 'porque', 'no', 'en', 'siempre', 'está', 'través', 'da', 've', 'simplemente', 'un', 'coche', 'esa', 'uno', 'más', 'acostumbrado', 'que', 'cuenta', 'a', 'es', 'lo', 'televisión', 'el', 'ventana', 'se', 'todo', 'y'}\n",
+      "\n",
+      "Palabras repetidas:\n",
+      "{'en': 3, 'uno': 2, 'se': 2, 'da': 2, 'cuenta': 2, 'de': 3, 'que': 3, 'un': 2, 'está': 2}\n"
+     ]
+    }
+   ],
+   "source": [
+    "palabras = frase.lower().replace(\",\",\"\").replace(\".\", \"\").split()\n",
+    "palabras_unicas = set(palabras)\n",
+    "\n",
+    "frecuencias = {}\n",
+    "\n",
+    "for palabra in palabras:\n",
+    "    if palabra in frecuencias:\n",
+    "        frecuencias[palabra] += 1\n",
+    "    else:\n",
+    "        frecuencias[palabra] = 1\n",
+    "\n",
+    "repetidas = {palabra: frecuencia for palabra, frecuencia in frecuencias.items() if frecuencia > 1}\n",
+    "\n",
+    "print(\"Palabras unicas:\")\n",
+    "print(palabras_unicas)\n",
+    "\n",
+    "print(\"\\nPalabras repetidas:\")\n",
+    "print(repetidas)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "474705ea-811c-4a5a-afa7-21cd111b5fa7",
+   "metadata": {},
+   "source": [
+    "#### 7.- Dada la lista de tuplas _nums_, crea una lista con la diferencia entre el mayor y el menor de cada tupla. A la vez, genera una lista de True o False indicando si la suma de cada tupla es múltiplo de 3."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "e8ea4ff5-6c74-4d23-bbe1-e239cbf4efdf",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "nums = [(3,9),(10,2),(5,5),(8,1)]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "id": "42918e05-60da-489b-8187-a85783dce58f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "diferencias: [6, 8, 0, 7]\n",
+      "multiplos de 3: [False, False, False, False]\n"
+     ]
+    }
+   ],
+   "source": [
+    "diferencias = [max(par) - min(par) for par in nums]\n",
+    "multiplos_3 = [(par[0] + par[1]) == 0 for par in nums]\n",
+    "\n",
+    "print(\"diferencias:\", diferencias)\n",
+    "print(\"multiplos de 3:\", multiplos_3)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b3f64d3f-ae45-41b7-b21a-022a452ccab2",
+   "metadata": {},
+   "source": [
+    "#### 8.- Dado el diccionario _usuarios_, convierte todos los nombres a mayúsculas. Crea un set con todos los roles del sistema. Devuelve un diccionario donde cada rol sea clave y su valor, la lista de usuarios que tienen ese rol."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "id": "394ba7c0-ed09-4702-a8c4-7dce8fb38c3a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "usuarios = {\n",
+    "    \"u1\" : {\"nombre\":\"ana\",\"roles\":{\"admin\",\"user\"}},\n",
+    "    \"u2\" : {\"nombre\":\"luis\",\"roles\":{\"user\"}},\n",
+    "    \"u3\" : {\"nombre\":\"marta\",\"roles\":{\"user\",\"moderator\"}}\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "id": "c65c02b7-d468-44c4-890a-1d02beae7b6f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Usuarios: {'u1': {'nombre': 'ANA', 'roles': {'user', 'admin'}}, 'u2': {'nombre': 'LUIS', 'roles': {'user'}}, 'u3': {'nombre': 'MARTA', 'roles': {'moderator', 'user'}}}\n",
+      "Roles: {'user', 'moderator', 'admin'}\n",
+      "Usuarios por rol: {'user': ['ANA', 'LUIS', 'MARTA'], 'moderator': ['MARTA'], 'admin': ['ANA']}\n"
+     ]
+    }
+   ],
+   "source": [
+    "for usuario in usuarios.values():\n",
+    "    usuario[\"nombre\"] = usuario[\"nombre\"].upper()\n",
+    "\n",
+    "roles = set()\n",
+    "\n",
+    "for usuario in usuarios.values():\n",
+    "    roles.update(usuario[\"roles\"])\n",
+    "\n",
+    "usuarios_por_rol = {}\n",
+    "\n",
+    "for rol in roles:\n",
+    "    usuarios_por_rol[rol] = []\n",
+    "\n",
+    "    for usuario in usuarios.values():\n",
+    "        if rol in usuario[\"roles\"]:\n",
+    "            usuarios_por_rol[rol].append(usuario[\"nombre\"])\n",
+    "\n",
+    "print(\"Usuarios:\", usuarios)\n",
+    "print(\"Roles:\", roles)\n",
+    "print(\"Usuarios por rol:\", usuarios_por_rol)\n",
+    "                 "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "693cb8d4-1642-4246-943c-868853d804db",
+   "metadata": {},
+   "source": [
+    "#### 9.- Dada la lista _valores_, convierte cada número a string, pero con las siguientes reglas:\n",
+    "- Si es par: \"par:<num>\"\n",
+    "- Si es múltiplo de 4: \"mult3:<num>\"\n",
+    "- Si cumple ambas condiciones, concatenar: \"par-mult3:<num>\"\n",
+    "#### Devuelve la lista final."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "id": "3d52c5ca-9518-4923-a5ba-01a788ea5db5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "valores = [10,21,33,42,55]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "id": "3046425b-a47a-4aa4-bc54-872d5836bf7b",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['par:10', '21', '33', 'par:42', '55']\n"
+     ]
+    }
+   ],
+   "source": [
+    "resultado = []\n",
+    "for numero in valores:\n",
+    "    if numero % 2 == 0 and numero % 4 == 0:\n",
+    "        resultado.append(\"par-mult3:\" + atr(numero))\n",
+    "    elif numero % 2 == 0:\n",
+    "        resultado.append(\"par:\" + str(numero))\n",
+    "    elif numero %4 == 0:\n",
+    "        resultado.append(\"mult3:\" + str(numero))\n",
+    "    else:\n",
+    "        resultado.append(str(numero))\n",
+    "\n",
+    "print(resultado)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "aba011dc-fb42-4ef2-816d-ec12779bb9bd",
+   "metadata": {},
+   "source": [
+    "#### 10.- Dado el dicionario _datos_, pon la primera letra de \"nombre\" en mayúsculas. Calcula la suma total de \"puntos\" y guarda el total en una nueva clave \"total\". Marca un booleano como \"aprobado\" si el total es mayor a 50. Finalmente, crea un set con todos los nombres de los usuarios aprobados. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "id": "41e4e1b0-327e-4fd5-9f77-97cbd645ef63",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "datos = [\n",
+    "    {\"id\":1,\"nombre\":\"ana\",\"puntos\":(10,20,30)},\n",
+    "    {\"id\":2,\"nombre\":\"luis\",\"puntos\":(5,15)},\n",
+    "    {\"id\":3,\"nombre\":\"marta\",\"puntos\":(100,50,25)}\n",
+    "]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "id": "3047e075-1b3d-416b-8abb-321fb15fcd40",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[{'id': 1, 'nombre': 'Ana', 'puntos': (10, 20, 30), 'total': 60, 'aprobado': True}, {'id': 2, 'nombre': 'Luis', 'puntos': (5, 15), 'total': 20, 'aprobado': False}, {'id': 3, 'nombre': 'Marta', 'puntos': (100, 50, 25), 'total': 175, 'aprobado': True}]\n"
+     ]
+    }
+   ],
+   "source": [
+    "for usuario in datos:\n",
+    "    usuario[\"nombre\"] = usuario[\"nombre\"].capitalize()\n",
+    "    usuario[\"total\"] = sum(usuario[\"puntos\"])\n",
+    "    usuario [\"aprobado\"] = usuario[\"total\"] > 50\n",
+    "\n",
+    "aprobados = {\n",
+    "    usuario[\"nombre\"]\n",
+    "    for usuario in datos\n",
+    "    if usuario[\"aprobado\"]\n",
+    "}\n",
+    "\n",
+    "print(datos)\n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "01adf069-2e1b-4b01-85a0-1e9408573c46",
+   "metadata": {},
+   "source": [
+    "#### 11.- Dada la lista _pares_, devuelve una lista con \"igual\" si los elementos de cada tupla son iguales, \"mayor\" si el primero es mayor, o \"menor si el segundo es \"mayor\"."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "id": "bd731efb-e3d0-4acd-8c21-0ab88504807e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "pares = [(2,3),(5,10),(7,7),(9,10)]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "id": "de3be13e-9a20-4ea9-8e65-cc4490eaea07",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['menor', 'menor', 'igual', 'menor']\n"
+     ]
+    }
+   ],
+   "source": [
+    "resultado = []\n",
+    "\n",
+    "for par in pares:\n",
+    "    if par[0] == par[1]:\n",
+    "        resultado.append(\"igual\")\n",
+    "    elif par[0] > par[1]:\n",
+    "        resultado.append(\"mayor\")\n",
+    "    else:\n",
+    "        resultado.append(\"menor\")\n",
+    "\n",
+    "print(resultado)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ae8372df-c045-4152-8b55-0d16f9008e3f",
+   "metadata": {},
+   "source": [
+    "#### 12.- Dado el diccionario _estudiantes_, crea un nuevo diccionario con la siguiente estructura:\n",
+    "- La clave debe ser el nombre en mayúsculas\n",
+    "- El valor debe ser otro diccionario con:\n",
+    "    - \"promedio\" como promedio de notas\n",
+    "    - \"aprobado\" como True si el promedio es >= 20, de lo contrario es False\n",
+    "    - \"max_min\" como tupla con (nota_max,nota_min)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "id": "cb06ff35-8b72-4c75-a7c9-7561d027d630",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "estudiantes = {\n",
+    "    \"s1\" : {\"nombre\":\"ana\",\"notas\":[10,20,30]},\n",
+    "    \"s2\" : {\"nombre\":\"luis\",\"notas\":[15,5]},\n",
+    "    \"s3\" : {\"nombre\":\"marta\",\"notas\":[50,100,25]},\n",
+    "    \"s4\" : {\"nombre\":\"pepe\",\"notas\":[40]}\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "id": "0a40dc49-7087-4a0e-95e1-c70b64d68fa0",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'ANA': {'promedio': 20.0, 'aprobado': True, 'max_min': (30, 10)}, 'LUIS': {'promedio': 10.0, 'aprobado': False, 'max_min': (15, 5)}, 'MARTA': {'promedio': 58.333333333333336, 'aprobado': True, 'max_min': (100, 25)}, 'PEPE': {'promedio': 40.0, 'aprobado': True, 'max_min': (40, 40)}}\n"
+     ]
+    }
+   ],
+   "source": [
+    "resultado = {}\n",
+    "for estudiante in estudiantes.values():\n",
+    "    nombre = estudiante[\"nombre\"].upper()\n",
+    "    notas = estudiante[\"notas\"]\n",
+    "\n",
+    "    promedio = sum(notas) / len(notas)\n",
+    "    aprobado = promedio >= 20\n",
+    "    max_min = (max(notas), min(notas))\n",
+    "\n",
+    "    resultado[nombre] = {\n",
+    "        \"promedio\": promedio,\n",
+    "        \"aprobado\": aprobado,\n",
+    "        \"max_min\": max_min\n",
+    "    }\n",
+    "\n",
+    "print(resultado)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c7ccb1b0-d94e-4c82-a187-81e135b82817",
+   "metadata": {},
+   "source": [
+    "#### 13.- Crea un archivo llamado _notas_alumnos.txt_ con este contenido:\n",
+    "#### Ana,10,20,30\n",
+    "#### Luis,5,15\n",
+    "#### Marta,100,50,25\n",
+    "#### Convierte cada línea en un diccionario con \"nombre\" capitalizado, \"promedio\" y \"aprobado\" si promedio >= 20.\n",
+    "#### Guarda la lista final en un archivo resultado.json"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "id": "13400ae3-8220-4ad6-a888-93e8d9197552",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Archivo resultado.json creado correctamente\n"
+     ]
+    }
+   ],
+   "source": [
+    "import json\n",
+    "with open (\"notas_alumnos.txt\", \"w\", encoding = \"utf-8\") as archivo:\n",
+    "    archivo.write(\"Ana,10,20,30\\n\")\n",
+    "\n",
+    "resultado = []\n",
+    "with open(\"notas_alumnos.txt\", \"r\", encoding =\"utf-8\") as archivo:\n",
+    "          for linea in archivo:\n",
+    "            datos = linea.strip().split(\",\")\n",
+    "\n",
+    "            nombre = datos[0].capitalize()\n",
+    "            notas = [int(nota) for nota in datos [1:]]\n",
+    "            promedio =sum(notas) / len(notas)\n",
+    "\n",
+    "            alumno = {\n",
+    "                \"nombre\": nombre,\n",
+    "                \"promedio\": promedio,\n",
+    "                \"aprobado\": promedio >= 20\n",
+    "            }\n",
+    "\n",
+    "            resultado.append(alumno)\n",
+    "\n",
+    "with open(\"resultado.json\", \"w\", encoding=\"utf-8\") as archivo_json:\n",
+    "    json.dump(resultado, archivo_json, ensure_ascii=False, indent=4)\n",
+    "\n",
+    "print(\"Archivo resultado.json creado correctamente\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "609ecfc2-455b-4cb8-8181-840236c1dc97",
+   "metadata": {},
+   "source": [
+    "#### 14.- Crea el archivo _usuarios.json_con el contenido del diccionario _datos_. Abre el archivo de nuevo y convierte todos los nombres a mayúsculas, luego crea un archivo _usuarios.csv_ con formato:\n",
+    "- id,nombre,roles\n",
+    "- 1,ANA,user|admin\n",
+    "- 2,LUIS,user\n",
+    "- 3,MARTA,moderator|user"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 54,
+   "id": "0447d160-c969-49dc-9ac9-63b30d340edf",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "usuarios.cvs creado correctamente\n"
+     ]
+    }
+   ],
+   "source": [
+    "import json\n",
+    "import csv\n",
+    "\n",
+    "datos = [\n",
+    "    {\"id\": 1, \"nombre\": \"ana\", \"puntos\": (10, 20, 30)},\n",
+    "    {\"id\": 2, \"nombre\": \"luis\", \"puntos\": (5, 15)},\n",
+    "    {\"id\": 3, \"nombre\": \"marta\", \"puntos\": (100, 50, 25)}\n",
+    "]\n",
+    "\n",
+    "with open (\"usuarios.json\", \"w\", encoding=\"utf-8\") as archivo:\n",
+    "    json.dump(datos, archivo, ensure_ascii=False, indent=4)\n",
+    "\n",
+    "with open (\"usuarios.json\", \"r\", encoding=\"utf-8\") as archivo:\n",
+    "    usuarios = json.load(archivo)\n",
+    "\n",
+    "for usuario in usuarios:\n",
+    "    usuario[\"nombre\"] = usuario[\"nombre\"].upper()\n",
+    "\n",
+    "with open(\"usuarios.csv\", \"w\", newline =\"\", encoding=\"utf-8\") as archivo_csv:\n",
+    "    escritor = csv.writer(archivo_csv)\n",
+    "    \n",
+    "    escritor.writerow([\"id\", \"nombre\", \"puntos\"])\n",
+    "    for usuario in usuarios:\n",
+    "        escritor.writerow([\n",
+    "            usuario[\"id\"],\n",
+    "            usuario[\"nombre\"],\n",
+    "            \"|\".join(map(str, usuario[\"puntos\"]))\n",
+    "        ])\n",
+    "\n",
+    "print(\"usuarios.cvs creado correctamente\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "39a74eb6-1b3d-4be4-861d-e486821c0998",
+   "metadata": {},
+   "source": [
+    "#### 15.- Con el archivo _fragmento-libro.txt_, ábrelo, cuenta la frecuencia de cada palabra (ignorando mayúsculas/minúsculas y signos). Devuelve un archivo llamado _frecuencias.json_ con las 5 palabras más comunes. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 57,
+   "id": "3da604e3-2d8f-4b83-b384-7b36582234ca",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Archivo frecuencias.json creado correctamente\n",
+      "{'de': 19, 'y': 9, 'la': 7, 'que': 5, 'a': 5}\n"
+     ]
+    }
+   ],
+   "source": [
+    "import json\n",
+    "import re\n",
+    "from collections import Counter\n",
+    "\n",
+    "with open(\"fragmento-libro.txt\", \"r\", encoding=\"utf-8\") as archivo:\n",
+    "    texto = archivo.read()\n",
+    "\n",
+    "texto =texto.lower()\n",
+    "\n",
+    "palabras = re.findall(r'\\w+', texto)\n",
+    "\n",
+    "contador = Counter(palabras)\n",
+    "\n",
+    "top5 = dict(contador.most_common(5))\n",
+    "\n",
+    "with open(\"frecuencias.json\", \"w\", encoding=\"utf-8\") as archivo_json:\n",
+    "    json.dump(top5, archivo_json, ensure_ascii=False, indent=4)\n",
+    "\n",
+    "print(\"Archivo frecuencias.json creado correctamente\")\n",
+    "print(top5)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "07ebba9a-6811-41de-b2fe-f1160601dd21",
+   "metadata": {},
+   "source": [
+    "#### 16.- Crea tres archivos CSV (_ventas1.csv_, _ventas2.csv_, _ventas3.csv_ con la misma información:\n",
+    "- producto,cantidad\n",
+    "- A,10\n",
+    "- B,5\n",
+    "#### Combínalos en un único archivo que se llema _total_ventas.csv_. Suma las cantidades por producto (si el producto se repite).\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 62,
+   "id": "1816b186-6035-4621-acc6-c1ac5173a09d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "archivos creados\n"
+     ]
+    }
+   ],
+   "source": [
+    "contenido = \"\"\"producto,cantidad\n",
+    "A,10\n",
+    "B,5\n",
+    "\"\"\"\n",
+    "\n",
+    "for nombre in [\"ventas1.csv\", \"ventas2.csv\", \"ventas3.csv\"]:\n",
+    "    with open(nombre, \"w\", encoding=\"utf-8\") as archivo:\n",
+    "        archivo.write(contenido)\n",
+    "\n",
+    "print(\"archivos creados\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ba9f9ff5-18b9-4b89-ad5a-93429da58804",
+   "metadata": {},
+   "source": [
+    "#### 17.- Crea un archivo _alumnos.json_ con el contenido siguiente:\n",
+    "- [{\"nombre\": \"ana\", \"notas\": [10, 20, 30]},{\"nombre\": \"luis\", \"notas\": [5, 15]},{\"nombre\": \"marta\", \"notas\": [100, 50, 25]}]\n",
+    "#### Lee el archivo y genera un diccionario donde la clave sea el nombre y el valor tenga el siguiente formato:\n",
+    "- {\"promedio\":X,\"max\":Y,\"min\":Z,\"aprobado\":True/False}\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 64,
+   "id": "bf4a6ac2-364d-4611-aac0-b0efb86bf462",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'ana': {'promedio': 20.0, 'max': 30, 'min': 10, 'aprobado': True}, 'luis': {'promedio': 10.0, 'max': 15, 'min': 5, 'aprobado': False}, 'marta': {'promedio': 58.333333333333336, 'max': 100, 'min': 25, 'aprobado': True}}\n"
+     ]
+    }
+   ],
+   "source": [
+    "import json\n",
+    "alumnos = [\n",
+    "    {\"nombre\": \"ana\", \"notas\": [10,20, 30]},\n",
+    "    {\"nombre\": \"luis\", \"notas\": [5,15]},\n",
+    "    {\"nombre\": \"marta\", \"notas\": [100,50, 25]}\n",
+    "]\n",
+    "\n",
+    "with open(\"alumnos.json\", \"w\", encoding=\"utf-8\") as archivo:\n",
+    "    json.dump(alumnos, archivo, ensure_ascii=False, indent=4)\n",
+    "\n",
+    "import json\n",
+    "with open (\"alumnos.json\", \"r\", encoding=\"utf-8\") as archivo:\n",
+    "    alumnos = json.load(archivo)\n",
+    "\n",
+    "resultado = {}\n",
+    "\n",
+    "for alumno in alumnos:\n",
+    "    nombre = alumno[\"nombre\"]\n",
+    "    notas = alumno[\"notas\"]\n",
+    "    promedio = sum(notas) / len(notas)\n",
+    "    resultado[nombre] = {\n",
+    "        \"promedio\": promedio,\n",
+    "        \"max\": max(notas),\n",
+    "        \"min\": min(notas),\n",
+    "        \"aprobado\": promedio >= 20\n",
+    "    }\n",
+    "    \n",
+    "print(resultado)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.14.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
